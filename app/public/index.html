@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K8s Learn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/animations.css">
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <nav id="nav">
+    <a href="/" class="nav-logo" data-link>
+      <span class="logo-helm">⎈</span>
+      <span class="logo-text">K8s<em>learn</em></span>
+    </a>
+    <div class="nav-links">
+      <a href="/cours" class="nav-link" data-link>Cours</a>
+      <a href="/exercices" class="nav-link" data-link>Exercices</a>
+    </div>
+    <div class="nav-right">
+      <div class="xp-widget" id="xp-widget" title="Tes points d'expérience">
+        <span class="xp-label" id="xp-label">Apprenti</span>
+        <div class="xp-track">
+          <div class="xp-fill" id="xp-fill"></div>
+        </div>
+        <span class="xp-num" id="xp-num">0 XP</span>
+      </div>
+      <div class="streak-badge" id="streak-badge" title="Jours de pratique consécutifs">
+        <span class="streak-icon">🔥</span>
+        <span id="streak-num">0</span>
+      </div>
+    </div>
+  </nav>
+
+  <main id="app">
+    <div class="boot-screen">
+      <div class="boot-helm">⎈</div>
+      <div class="boot-bar"><div class="boot-fill"></div></div>
+      <p class="boot-text">Connexion au cluster...</p>
+    </div>
+  </main>
+
+  <div id="toasts"></div>
+  <div id="xp-float-layer"></div>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+/* ── Keyframes ─────────────────────────────────────────────────────────────── */
+
+@keyframes helm-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes fire-pulse {
+  0%,100% { transform: scale(1) rotate(-3deg); }
+  50%      { transform: scale(1.2) rotate(3deg); }
+}
+
+@keyframes boot-load {
+  0%   { width: 0%; }
+  60%  { width: 85%; }
+  100% { width: 100%; }
+}
+
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cursor-blink {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+@keyframes terminal-open {
+  from { opacity: 0; max-height: 0; }
+  to   { opacity: 1; max-height: 500px; }
+}
+
+@keyframes btn-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(16,185,129,.4); }
+  50%      { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toast-out {
+  to { opacity: 0; transform: translateX(110%); }
+}
+
+@keyframes xp-float-up {
+  0%   { opacity: 1; transform: translateY(0); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-60px); }
+}
+
+@keyframes level-up-pop {
+  0%   { opacity: 0; transform: scale(.8); }
+  60%  { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes xp-bar-glow {
+  0%,100% { box-shadow: none; }
+  50%      { box-shadow: 0 0 8px var(--teal); }
+}
+
+/* ── Staggered card entrance ───────────────────────────────────────────────── */
+.cards-grid .card { animation: card-in .4s ease both; }
+.cards-grid .card:nth-child(1)  { animation-delay: .03s; }
+.cards-grid .card:nth-child(2)  { animation-delay: .06s; }
+.cards-grid .card:nth-child(3)  { animation-delay: .09s; }
+.cards-grid .card:nth-child(4)  { animation-delay: .12s; }
+.cards-grid .card:nth-child(5)  { animation-delay: .15s; }
+.cards-grid .card:nth-child(6)  { animation-delay: .18s; }
+.cards-grid .card:nth-child(7)  { animation-delay: .21s; }
+.cards-grid .card:nth-child(8)  { animation-delay: .24s; }
+.cards-grid .card:nth-child(9)  { animation-delay: .27s; }
+.cards-grid .card:nth-child(10) { animation-delay: .30s; }
+
+/* ── XP gain animation on bar ──────────────────────────────────────────────── */
+.xp-fill.gained {
+  animation: xp-bar-glow .6s ease;
+}
+
+/* ── Achievement chip unlock ───────────────────────────────────────────────── */
+@keyframes chip-unlock {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.04); box-shadow: 0 0 12px rgba(167,139,250,.4); }
+  100% { transform: scale(1); }
+}
+.achievement-chip.just-unlocked {
+  animation: chip-unlock .5s ease;
+}
+
+/* ── Solved flash ──────────────────────────────────────────────────────────── */
+@keyframes solved-flash {
+  0%   { background: rgba(0,201,167,.2); }
+  100% { background: var(--surf-2); }
+}
+.deploy-panel.just-solved {
+  animation: solved-flash .8s ease;
+}

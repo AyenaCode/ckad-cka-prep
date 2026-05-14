@@ -1,0 +1,85 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: k8s-platform
+  namespace: courses
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: k8s-platform-role
+rules:
+  - apiGroups: ["", "apps", "batch"]
+    resources:
+      - namespaces
+      - deployments
+      - replicasets
+      - pods
+      - services
+      - configmaps
+      - secrets
+      - jobs
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: k8s-platform-binding
+subjects:
+  - kind: ServiceAccount
+    name: k8s-platform
+    namespace: courses
+roleRef:
+  kind: ClusterRole
+  name: k8s-platform-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-platform
+  namespace: courses
+  labels:
+    app: k8s-platform
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-platform
+  template:
+    metadata:
+      labels:
+        app: k8s-platform
+    spec:
+      serviceAccountName: k8s-platform
+      containers:
+        - name: platform
+          image: aycode1/k8s-courses:2.0.0-platform
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 15
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-platform
+  namespace: courses
+spec:
+  selector:
+    app: k8s-platform
+  ports:
+    - port: 80
+      targetPort: 3000
+      nodePort: 30080
+  type: NodePort
